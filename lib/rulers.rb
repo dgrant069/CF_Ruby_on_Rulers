@@ -3,6 +3,7 @@ require "rulers/array"
 require "rulers/routing"
 require "rulers/dependencies"
 require "rulers/util"
+require "rulers/controller"
 
 module Rulers
   class Application
@@ -22,16 +23,6 @@ module Rulers
       `echo debug > debug.txt`; # This doesn't append, it overwrites with "debug", need to update with ... #{debug} >>...
         [200, {'Content-Type' => 'text/html'}, [text]]
 
-    end
-  end
-
-  class Controller
-    def initialize(env)
-      @env = env
-    end
-
-    def env
-      @env
     end
   end
 end
