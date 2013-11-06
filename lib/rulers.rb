@@ -1,6 +1,8 @@
 require "rulers/version"
 require "rulers/array"
 require "rulers/routing"
+require "rulers/dependencies"
+require "rulers/util"
 
 module Rulers
   class Application
@@ -19,7 +21,7 @@ module Rulers
       end
       `echo debug > debug.txt`; # This doesn't append, it overwrites with "debug", need to update with ... #{debug} >>...
         [200, {'Content-Type' => 'text/html'}, [text]]
-      }
+
     end
   end
 
