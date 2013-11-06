@@ -5,6 +5,7 @@ require "rulers/dependencies"
 require "rulers/util"
 require "rulers/controller"
 
+
 module Rulers
   class Application
     def call(env)
@@ -18,11 +19,11 @@ module Rulers
       begin
         text = controller.send(act)
       rescue Exception => e
-        text = "Can't display a quote"
+        text = "Can't display a quote. Here's officially why: #{e}"
+        #e.backtrace
       end
       `echo debug > debug.txt`; # This doesn't append, it overwrites with "debug", need to update with ... #{debug} >>...
         [200, {'Content-Type' => 'text/html'}, [text]]
-
     end
   end
 end
