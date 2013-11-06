@@ -1,6 +1,14 @@
 class QuotesController < Rulers::Controller
+  def index
+    @browser = "IE sucks nuts"
+    #@ua = request.user_agent
+    render :index
+  end
+
   def a_quote
-    render :a_quote, :noun => :winking
+    @verb = "licking"
+    @noun = "Izze"
+    render :a_quote
   end
 
   def exception
