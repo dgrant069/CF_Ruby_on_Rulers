@@ -1,2 +1,5 @@
-<h1>This is an index</h1>
+<h1>This is an index of quotes:</h1>
+<% quotes.each do |quote| %>
+  <p><%= quote["quote"] %></p>
+<% end %>
 <p>You are on: <%= env["HTTP_USER_AGENT"] %></p>

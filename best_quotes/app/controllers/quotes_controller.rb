@@ -1,8 +1,9 @@
 class QuotesController < Rulers::Controller
   def index
+    quotes = FileModel.all
     @browser = "IE sucks nuts"
     #@ua = request.user_agent
-    render :index
+    render :index, :quotes => quotes
   end
 
   def quote_1
@@ -18,5 +19,15 @@ class QuotesController < Rulers::Controller
 
   def exception
     raise "It's a bad one!!!"
+  end
+
+  def new_quote
+    attrs = {
+      "submitter" => "web user",
+      "quote" => "A picture is worth a thousand pixels",
+      "attribution" => "Me"
+    }
+    m = FileModel.create attrs
+    render :quote, :obj => m
   end
 end
