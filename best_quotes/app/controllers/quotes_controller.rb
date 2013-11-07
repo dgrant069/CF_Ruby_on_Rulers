@@ -2,8 +2,12 @@ class QuotesController < Rulers::Controller
   def index
     quotes = FileModel.all
     @browser = "IE sucks nuts"
-    #@ua = request.user_agent
-    render :index, :quotes => quotes
+    render_response :index, :quotes => quotes
+  end
+
+  def show
+    quote = FileModel.find(params["id"])
+    render_response :quote, :obj => quote
   end
 
   def quote_1

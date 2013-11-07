@@ -1,5 +1,6 @@
 require "erubis"
 require "rulers/file_model"
+require "rack/request"
 
 module Rulers
   class Controller
@@ -28,5 +29,31 @@ module Rulers
      end
      eruby.result locals.merge(:env => env)
     end
+
+    def request
+      @request ||= Rack::Request.new(@env)
+    end
+
+    def params
+      request.params
+    end
+
+    def response(text, status = 200, headers = {})
+      raise "Already responded" if @response
+      a = [text].flatten
+      puts a
+      @response = Rack::Response.new(a, status, headers)
+    end
+
+    def get_response
+      @response
+      #puts @response
+    end
+
+    def render_response(*args)
+      response(render(*args))
+      #puts (*args)
+    end
+
   end
 end

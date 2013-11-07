@@ -23,8 +23,15 @@ module Rulers
         text = "Can't display a quote. Here's officially why: #{e}"
         #e.backtrace
       end
-      `echo debug > debug.txt`; # This doesn't append, it overwrites with "debug", need to update with ... #{debug} >>...
+      if controller.get_response
+        st, hd, rs = controller.get_response.to_a
+        [st, hd, [rs.body].flatten]
+        #puts [st, hd, [rs.body].flatten]
+      else
         [200, {'Content-Type' => 'text/html'}, [text]]
+      end
+
+      #{}`echo debug > debug.txt`; # This doesn't append, it overwrites with "debug", need to update with ... #{debug} >>...
     end
   end
 end
